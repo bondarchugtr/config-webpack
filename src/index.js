@@ -1,27 +1,17 @@
-class Game {
-    name = 'Violin Charades'
+
+import name from './module-1';
+import './css/common.scss';
+
+
+console.log(name)
+console.log('Это index.js, салют')
+
+function component() {
+    const element = document.createElement('div');
+
+    // Lodash, currently included via a script, is required for this line to work
+    element.innerHTML = _.join(['Hello', 'webpack'], ' ');
+    return element;
 }
-const myGame = new Game()
 
-// создаем параграф
-const p = document.createElement('p')
-p.textContent = `I like ${myGame.game}.`
-
-// создаем элемент заголовка
-const heading = document.createElement('h1')
-heading.textContent = 'Как интересно!'
-
-// добавляем параграф и заголовок в DOM
-const root = document.querySelector('#root')
-root.append(heading, p)
-
-
-
-console.log("Как интересно!")
-const heading = document.createElement('h1')
-heading.textContent = 'Как интересно!'
-
-// добавляем заголовок в DOM
-const root = document.querySelector('#root')
-root.append(heading)
-
+document.body.appendChild(component());

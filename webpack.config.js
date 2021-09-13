@@ -1,32 +1,29 @@
-const path = require('path')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-    entry: {
-        main: path.resolve(__dirname, './src/index.js'),
-    },
+    entry: './src/index.js',
     output: {
-        path: path.resolve(__dirname, './dist'),
-        filename: 'index.bundle.js',
+        path: path.resolve(__dirname, 'build'),
+        filename: 'my-index.js',
     },
-    plugins: [
-        new HtmlWebpackPlugin({
-            title: 'webpack Boilerplate',
-            template: path.resolve(__dirname, './src/template.html'), // шаблон
-            filename: 'index.html', // название выходного файла
-        }),
-        new CleanWebpackPlugin(),
-
-    ],
     module: {
         rules: [
-            // JavaScript
             {
-                test: /\.js$/,
+                test: /\.scss$/i,
+                use: ["style-loader", "css-loader", "sass-loader"],
+            },
+            {
+                test: /\.m?js$/,
                 exclude: /node_modules/,
-                use: ['babel-loader'],
+                use: ["babel-loader"],
+
             },
         ],
+    },
+    plugins: [new HtmlWebpackPlugin()],
+    devServer: {
+        port: 4545,
+        open: true,
     }
-}
+};
