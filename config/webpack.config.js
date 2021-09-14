@@ -1,5 +1,5 @@
 const path = require('path');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+// const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
@@ -15,11 +15,15 @@ module.exports = {
                 test: /\.scss$/i,
                 use: [
                     "style-loader",
-                    MiniCssExtractPlugin.loader,
                     "css-loader",
                     "sass-loader",
+                    {
+                        loader: "postcss-loader",
+                    }
                 ],
+
             },
+
             {
                 test: /\.js$/,
                 exclude: /node_modules/,
@@ -30,7 +34,7 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({ template: 'src/ index.html' }),
-        new CleanWebpackPlugin(),
+        // new CleanWebpackPlugin(),
         new MiniCssExtractPlugin(),
     ],
     devServer: {
